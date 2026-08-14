@@ -1,0 +1,13 @@
+{
+  "paymentLink": "https://square.link/u/FR2sWicX?src=sheet",
+  "phone1": "(408) 315-6026",
+  "phone2": "(408) 504-8041",
+  "email": "info@nileparking.com",
+  "hours": "Lot open 24/7 · Office Mon–Fri, 9am–5pm",
+  "lot": {
+    "name": "2nd Street Lot",
+    "address": "348 2nd St, San Jose, CA 95113",
+    "description": "In the heart of downtown, a block off Santa Clara Street. Best for the office towers, City Hall and a night out on 2nd.",
+    "near": ["San Jose State", "SJ Museum of Art", "City Hall", "Downtown dining"]
+  }
+}

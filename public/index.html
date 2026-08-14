@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nile Parking — Downtown San Jose</title>
-<meta name="description" content="Nile Parking operates two lots in downtown San Jose: 348 2nd St and 70 S Almaden Ave. Hourly, daily and monthly parking.">
+<meta name="description" content="Nile Parking operates a lot in downtown San Jose at 348 2nd St. Hourly, daily and monthly parking.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@600;700;800&family=Overpass+Mono:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -217,7 +217,7 @@
     </a>
     <nav aria-label="Main">
       <ul>
-        <li><a href="#lots">Our lots</a></li>
+        <li><a href="#lots">Our lot</a></li>
         <li><a href="#rates">Pay</a></li>
         <li><a href="#know">Good to know</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -232,11 +232,11 @@
   <div id="top" class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow rise d1">Downtown San Jose · Two lots</p>
+        <p class="eyebrow rise d1">Downtown San Jose</p>
         <h1 class="rise d2">Park close.<br>Walk <em>everywhere</em>.</h1>
-        <p class="lede rise d2">Open lots on 2nd Street and South Almaden Avenue — minutes from the arena, the offices, the campus and the restaurants. Pull in, pay online at one flat rate, go.</p>
+        <p class="lede rise d2">An open lot on 2nd Street — minutes from the offices, City Hall and the restaurants. Pull in, pay online at one flat rate, go.</p>
         <div class="cta-row rise d3">
-          <a class="btn btn-primary" href="https://square.link/u/FR2sWicX?src=sheet" target="_blank" rel="noopener">Pay for parking</a>
+          <a class="btn btn-primary js-pay-link" href="https://square.link/u/FR2sWicX?src=sheet" target="_blank" rel="noopener">Pay for parking</a>
           <a class="btn btn-ghost" href="#lots">Find a lot</a>
         </div>
       </div>
@@ -247,7 +247,7 @@
         <p class="signhead">Nile Parking · Flat rate</p>
         <div class="signrule"></div>
         <p class="flatline">One flat rate.<br>No hourly math, no meter to watch.</p>
-        <a class="btn btn-primary paybtn" href="https://square.link/u/FR2sWicX?src=sheet" target="_blank" rel="noopener">Pay for parking</a>
+        <a class="btn btn-primary paybtn js-pay-link" href="https://square.link/u/FR2sWicX?src=sheet" target="_blank" rel="noopener">Pay for parking</a>
         <p class="signfoot">Secure checkout by Square. Card and mobile pay accepted.</p>
       </div>
     </div>
@@ -258,40 +258,24 @@
   <section id="lots">
     <div class="wrap">
       <div class="sechead">
-        <h2>Our lots</h2>
-        <p class="note">Both lots are open-air, well lit and self-serve. Directions open in your maps app.</p>
+        <h2>Our lot</h2>
+        <p class="note">Open-air, well lit and self-serve. Directions open in your maps app.</p>
       </div>
 
       <div class="lots">
         <article class="lot">
           <div class="stalls" aria-hidden="true"></div>
           <div class="lot-body">
-            <h3>2nd Street Lot</h3>
-            <p class="addr">348 2nd St, San Jose, CA 95113</p>
-            <p>In the heart of downtown, a block off Santa Clara Street. Best for the office towers, City Hall and a night out on 2nd.</p>
-            <ul class="near">
+            <h3 id="lotName">2nd Street Lot</h3>
+            <p class="addr" id="lotAddress">348 2nd St, San Jose, CA 95113</p>
+            <p id="lotDescription">In the heart of downtown, a block off Santa Clara Street. Best for the office towers, City Hall and a night out on 2nd.</p>
+            <ul class="near" id="lotNear">
               <li>San Jose State</li>
               <li>SJ Museum of Art</li>
               <li>City Hall</li>
               <li>Downtown dining</li>
             </ul>
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=348+2nd+St+San+Jose+CA+95113" target="_blank" rel="noopener">Get directions</a>
-          </div>
-        </article>
-
-        <article class="lot">
-          <div class="stalls" aria-hidden="true"></div>
-          <div class="lot-body">
-            <h3>Almaden Lot</h3>
-            <p class="addr">70 S Almaden Ave, San Jose, CA</p>
-            <p>On the west side of downtown, close to the arena and the station. The one to pick on a game night or a train day.</p>
-            <ul class="near">
-              <li>SAP Center</li>
-              <li>Diridon Station</li>
-              <li>Adobe campus</li>
-              <li>Convention Center</li>
-            </ul>
-            <a class="btn" href="https://www.google.com/maps/search/?api=1&query=70+S+Almaden+Ave+San+Jose+CA" target="_blank" rel="noopener">Get directions</a>
+            <a class="btn js-lot-directions" href="https://www.google.com/maps/search/?api=1&query=348+2nd+St+San+Jose+CA+95113" target="_blank" rel="noopener">Get directions</a>
           </div>
         </article>
       </div>
@@ -303,17 +287,17 @@
     <div class="wrap">
       <div class="sechead">
         <h2>Pay for parking</h2>
-        <p class="note">One flat rate at both lots. Pay online from your phone before you walk away.</p>
+        <p class="note">One flat rate at the lot. Pay online from your phone before you walk away.</p>
       </div>
 
       <div class="paypanel">
         <div>
           <p class="label">Flat rate</p>
           <h3 class="payhead">One price. Park and go.</h3>
-          <p class="paycopy">No hourly tiers and no time to keep track of — a single flat rate covers your stay at either lot. Pay through our secure Square checkout and you're done.</p>
+          <p class="paycopy">No hourly tiers and no time to keep track of — a single flat rate covers your stay. Pay through our secure Square checkout and you're done.</p>
         </div>
         <div class="payaction">
-          <a class="btn btn-primary paybtn" href="https://square.link/u/FR2sWicX?src=sheet" target="_blank" rel="noopener">Pay with Square</a>
+          <a class="btn btn-primary paybtn js-pay-link" href="https://square.link/u/FR2sWicX?src=sheet" target="_blank" rel="noopener">Pay with Square</a>
           <p class="paynote">Opens Square's secure checkout. Card, Apple&nbsp;Pay and Google&nbsp;Pay accepted.</p>
         </div>
       </div>
@@ -338,7 +322,7 @@
         <div class="fact">
           <span class="tick" aria-hidden="true"></span>
           <h3>Lit and monitored</h3>
-          <p>Both lots are lit overnight and under camera coverage.</p>
+          <p>The lot is lit overnight and under camera coverage.</p>
         </div>
         <div class="fact">
           <span class="tick" aria-hidden="true"></span>
@@ -357,17 +341,16 @@
         <p style="color:var(--muted);max-width:42ch">Trouble with a payment, a question about the lot, or a car that got towed? Reach us and we'll sort it out.</p>
         <!-- EDIT CONTACT DETAILS HERE -->
         <ul class="deets">
-          <li><span class="k">Phone</span><a href="tel:+14083156026">(408) 315-6026</a></li>
-          <li><span class="k">Phone</span><a href="tel:+14085048041">(408) 504-8041</a></li>
-          <li><span class="k">Email</span><a href="mailto:info@nileparking.com">info@nileparking.com</a></li>
-          <li><span class="k">Hours</span><span>Lots open 24/7 · Office Mon–Fri, 9am–5pm</span></li>
+          <li><span class="k">Phone</span><a id="phone1Link" href="tel:+14083156026">(408) 315-6026</a></li>
+          <li><span class="k">Phone</span><a id="phone2Link" href="tel:+14085048041">(408) 504-8041</a></li>
+          <li><span class="k">Email</span><a id="emailLink" href="mailto:info@nileparking.com">info@nileparking.com</a></li>
+          <li><span class="k">Hours</span><span id="hoursText">Lot open 24/7 · Office Mon–Fri, 9am–5pm</span></li>
         </ul>
       </div>
       <div>
-        <div class="sechead"><h2>Locations</h2></div>
+        <div class="sechead"><h2>Location</h2></div>
         <ul class="deets">
-          <li><span class="k">Lot 2nd St</span><a href="https://www.google.com/maps/search/?api=1&query=348+2nd+St+San+Jose+CA+95113" target="_blank" rel="noopener">348 2nd St, San Jose, CA 95113</a></li>
-          <li><span class="k">Lot Almaden</span><a href="https://www.google.com/maps/search/?api=1&query=70+S+Almaden+Ave+San+Jose+CA" target="_blank" rel="noopener">70 S Almaden Ave, San Jose, CA</a></li>
+          <li><span class="k" id="lotNameFooter">Lot 2nd St</span><a class="js-lot-directions" id="lotAddressFooter" href="https://www.google.com/maps/search/?api=1&query=348+2nd+St+San+Jose+CA+95113" target="_blank" rel="noopener">348 2nd St, San Jose, CA 95113</a></li>
         </ul>
       </div>
     </div>
@@ -385,6 +368,44 @@
 
 <script>
   document.getElementById('yr').textContent = new Date().getFullYear();
+
+  fetch('/api/settings')
+    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+    .then((s) => {
+      document.querySelectorAll('.js-pay-link').forEach((el) => { el.href = s.paymentLink; });
+
+      const phone1 = document.getElementById('phone1Link');
+      phone1.href = 'tel:+1' + s.phone1.replace(/\D/g, '');
+      phone1.textContent = s.phone1;
+
+      const phone2 = document.getElementById('phone2Link');
+      phone2.href = 'tel:+1' + s.phone2.replace(/\D/g, '');
+      phone2.textContent = s.phone2;
+
+      const email = document.getElementById('emailLink');
+      email.href = 'mailto:' + s.email;
+      email.textContent = s.email;
+
+      document.getElementById('hoursText').textContent = s.hours;
+
+      document.getElementById('lotName').textContent = s.lot.name;
+      document.getElementById('lotNameFooter').textContent = 'Lot ' + s.lot.name;
+      document.getElementById('lotAddress').textContent = s.lot.address;
+      document.getElementById('lotAddressFooter').textContent = s.lot.address;
+      document.getElementById('lotDescription').textContent = s.lot.description;
+
+      const nearList = document.getElementById('lotNear');
+      nearList.innerHTML = '';
+      s.lot.near.forEach((tag) => {
+        const li = document.createElement('li');
+        li.textContent = tag;
+        nearList.appendChild(li);
+      });
+
+      const mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(s.lot.address);
+      document.querySelectorAll('.js-lot-directions').forEach((el) => { el.href = mapsUrl; });
+    })
+    .catch(() => { /* keep static fallback content already in the page */ });
 </script>
 </body>
 </html>

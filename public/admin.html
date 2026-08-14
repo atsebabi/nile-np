@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nile Parking — Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  :root{
+    --nile-900:#062A33;
+    --nile-600:#14727F;
+    --sign-yellow:#FFC72C;
+    --paper:#F1F0EC;
+    --card:#FFFFFF;
+    --ink:#12262C;
+    --muted:#5C6B70;
+    --rule:#DCDAD3;
+    --danger:#B3261E;
+    --ok:#1B6E3C;
+    --display:"Overpass", system-ui, sans-serif;
+    --body:"Public Sans", system-ui, sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-size:16px;line-height:1.5;
+  }
+  header{background:var(--nile-900);color:#fff;padding:18px 24px}
+  header h1{margin:0;font-size:18px;font-family:var(--display);text-transform:uppercase;letter-spacing:0.04em}
+  .wrap{max-width:640px;margin:0 auto;padding:32px 20px 64px}
+  h2{font-family:var(--display);font-size:22px;margin:0 0 6px}
+  .muted{color:var(--muted);font-size:14px;margin:0 0 24px}
+  label{display:block;font-weight:600;font-size:13px;margin-bottom:6px;margin-top:18px}
+  label.first{margin-top:0}
+  input[type=text],input[type=password],input[type=url],input[type=email],textarea{
+    width:100%;padding:10px 12px;border:1px solid var(--rule);border-radius:6px;
+    font-family:inherit;font-size:15px;background:var(--card);color:var(--ink);
+  }
+  textarea{resize:vertical;min-height:70px}
+  .hint{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .card{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:24px}
+  button{
+    font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:0.04em;
+    text-transform:uppercase;border:none;border-radius:6px;padding:12px 20px;
+    cursor:pointer;background:var(--nile-900);color:#fff;
+  }
+  button:hover{background:var(--nile-600)}
+  button.secondary{background:transparent;color:var(--nile-900);border:1px solid var(--rule)}
+  button.secondary:hover{background:#e9e8e3}
+  .actions{display:flex;gap:12px;margin-top:28px;align-items:center}
+  .msg{font-size:14px;margin-top:14px;padding:10px 12px;border-radius:6px;display:none}
+  .msg.ok{display:block;background:#E6F2EA;color:var(--ok)}
+  .msg.err{display:block;background:#FBEAE9;color:var(--danger)}
+  .topbar{display:flex;justify-content:space-between;align-items:center}
+  #loginView{max-width:360px;margin:80px auto}
+  #dashView{display:none}
+  .fieldset-title{font-family:var(--display);font-size:15px;text-transform:uppercase;letter-spacing:0.04em;margin:28px 0 4px;color:var(--nile-600)}
+  .fieldset-title:first-of-type{margin-top:0}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topbar" style="max-width:640px">
+    <h1>Nile Parking · Admin</h1>
+    <button type="button" class="secondary" id="logoutBtn" style="display:none;color:#fff;border-color:#3C6E79">Log out</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div id="loginView" class="card">
+    <h2>Sign in</h2>
+    <p class="muted">Enter the admin password to edit the site.</p>
+    <form id="loginForm">
+      <label class="first" for="password">Password</label>
+      <input type="password" id="password" name="password" required autocomplete="current-password">
+      <div class="actions"><button type="submit">Sign in</button></div>
+      <div class="msg" id="loginMsg"></div>
+    </form>
+  </div>
+
+  <div id="dashView">
+    <h2>Site settings</h2>
+    <p class="muted">Changes save immediately and appear on the live page on next load.</p>
+
+    <form id="settingsForm" class="card">
+      <div class="fieldset-title">Payment</div>
+      <label class="first" for="paymentLink">Square payment link</label>
+      <input type="url" id="paymentLink" name="paymentLink" required>
+      <p class="hint">Used on every "Pay for parking" button on the site.</p>
+
+      <div class="fieldset-title">Contact</div>
+      <div class="row2">
+        <div>
+          <label class="first" for="phone1">Phone 1</label>
+          <input type="text" id="phone1" name="phone1" required placeholder="(408) 315-6026">
+        </div>
+        <div>
+          <label class="first" for="phone2">Phone 2</label>
+          <input type="text" id="phone2" name="phone2" required placeholder="(408) 504-8041">
+        </div>
+      </div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      <label for="hours">Hours text</label>
+      <input type="text" id="hours" name="hours" required>
+
+      <div class="fieldset-title">Lot</div>
+      <label class="first" for="lotName">Lot name</label>
+      <input type="text" id="lotName" name="lotName" required>
+      <label for="lotAddress">Address</label>
+      <input type="text" id="lotAddress" name="lotAddress" required>
+      <p class="hint">Also used to build the "Get directions" map link.</p>
+      <label for="lotDescription">Description</label>
+      <textarea id="lotDescription" name="lotDescription" required></textarea>
+      <label for="lotNear">Nearby tags</label>
+      <input type="text" id="lotNear" name="lotNear" required placeholder="Comma-separated, e.g. City Hall, Downtown dining">
+
+      <div class="actions">
+        <button type="submit">Save changes</button>
+        <span class="msg" id="saveMsg"></span>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+<script>
+  const loginView = document.getElementById('loginView');
+  const dashView = document.getElementById('dashView');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const loginForm = document.getElementById('loginForm');
+  const loginMsg = document.getElementById('loginMsg');
+  const settingsForm = document.getElementById('settingsForm');
+  const saveMsg = document.getElementById('saveMsg');
+
+  function showMsg(el, text, ok) {
+    el.textContent = text;
+    el.className = 'msg ' + (ok ? 'ok' : 'err');
+  }
+
+  function fillForm(s) {
+    settingsForm.paymentLink.value = s.paymentLink;
+    settingsForm.phone1.value = s.phone1;
+    settingsForm.phone2.value = s.phone2;
+    settingsForm.email.value = s.email;
+    settingsForm.hours.value = s.hours;
+    settingsForm.lotName.value = s.lot.name;
+    settingsForm.lotAddress.value = s.lot.address;
+    settingsForm.lotDescription.value = s.lot.description;
+    settingsForm.lotNear.value = s.lot.near.join(', ');
+  }
+
+  async function loadDashboard() {
+    const res = await fetch('/api/settings');
+    const s = await res.json();
+    fillForm(s);
+    loginView.style.display = 'none';
+    dashView.style.display = 'block';
+    logoutBtn.style.display = 'inline-block';
+  }
+
+  async function checkSession() {
+    const res = await fetch('/api/session');
+    const { authenticated } = await res.json();
+    if (authenticated) await loadDashboard();
+  }
+
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    loginMsg.className = 'msg';
+    const password = document.getElementById('password').value;
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    });
+    if (res.ok) {
+      document.getElementById('password').value = '';
+      await loadDashboard();
+    } else {
+      const body = await res.json().catch(() => ({}));
+      showMsg(loginMsg, body.error || 'Sign-in failed', false);
+    }
+  });
+
+  logoutBtn.addEventListener('click', async () => {
+    await fetch('/api/logout', { method: 'POST' });
+    dashView.style.display = 'none';
+    logoutBtn.style.display = 'none';
+    loginView.style.display = 'block';
+  });
+
+  settingsForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    saveMsg.className = 'msg';
+    const payload = {
+      paymentLink: settingsForm.paymentLink.value.trim(),
+      phone1: settingsForm.phone1.value.trim(),
+      phone2: settingsForm.phone2.value.trim(),
+      email: settingsForm.email.value.trim(),
+      hours: settingsForm.hours.value.trim(),
+      lot: {
+        name: settingsForm.lotName.value.trim(),
+        address: settingsForm.lotAddress.value.trim(),
+        description: settingsForm.lotDescription.value.trim(),
+        near: settingsForm.lotNear.value.split(',').map((s) => s.trim()).filter(Boolean),
+      },
+    };
+    const res = await fetch('/api/settings', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const body = await res.json().catch(() => ({}));
+    if (res.ok) {
+      showMsg(saveMsg, 'Saved.', true);
+      fillForm(body.settings);
+    } else if (res.status === 401) {
+      showMsg(saveMsg, 'Your session expired. Please sign in again.', false);
+      dashView.style.display = 'none';
+      logoutBtn.style.display = 'none';
+      loginView.style.display = 'block';
+    } else {
+      showMsg(saveMsg, body.error || 'Save failed', false);
+    }
+  });
+
+  checkSession();
+</script>
+</body>
+</html>
